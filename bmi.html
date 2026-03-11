@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>HealthMetric - Smart BMI Analyzer</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI;
+scroll-behavior:smooth;
+}
+
+body{
+
+background:linear-gradient(135deg,#1a2a6c,#b21f1f,#fdbb2d);
+color:white;
+
+}
+
+/* NAVBAR */
+
+nav{
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 8%;
+background:rgba(0,0,0,0.2);
+backdrop-filter:blur(10px);
+position:sticky;
+top:0;
+
+}
+
+nav h2{
+color:#00f5d4;
+}
+
+nav a{
+
+margin-left:20px;
+color:white;
+text-decoration:none;
+font-weight:500;
+
+}
+
+nav a:hover{
+
+color:#00f5d4;
+
+}
+
+/* HERO */
+
+.hero{
+
+height:85vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:20px;
+
+}
+
+.hero h1{
+
+font-size:60px;
+background:linear-gradient(90deg,#00f5d4,#9b5de5);
+-webkit-background-clip:text;
+color:transparent;
+
+}
+
+.hero p{
+
+margin-top:20px;
+font-size:20px;
+max-width:650px;
+
+}
+
+.hero button{
+
+margin-top:30px;
+padding:15px 35px;
+border:none;
+border-radius:40px;
+background:#00f5d4;
+color:black;
+font-size:18px;
+cursor:pointer;
+transition:0.3s;
+
+}
+
+.hero button:hover{
+
+transform:scale(1.1);
+
+}
+
+/* CALCULATOR */
+
+.calculator{
+
+padding:100px 10%;
+display:flex;
+justify-content:center;
+
+}
+
+.calc-card{
+
+background:rgba(255,255,255,0.1);
+padding:40px;
+border-radius:20px;
+width:420px;
+text-align:center;
+backdrop-filter:blur(10px);
+
+}
+
+.calc-card h2{
+margin-bottom:20px;
+}
+
+input,select{
+
+width:100%;
+padding:12px;
+margin:10px 0;
+border:none;
+border-radius:10px;
+font-size:16px;
+
+}
+
+button.calculate{
+
+width:100%;
+padding:12px;
+margin-top:10px;
+border:none;
+border-radius:10px;
+background:#00f5d4;
+font-size:18px;
+cursor:pointer;
+
+}
+
+.result{
+
+margin-top:20px;
+font-size:22px;
+
+}
+
+/* GAUGE */
+
+.gauge{
+
+width:200px;
+height:100px;
+border-radius:100px 100px 0 0;
+background:linear-gradient(90deg,orange,green,red);
+margin:30px auto;
+position:relative;
+overflow:hidden;
+
+}
+
+.needle{
+
+width:4px;
+height:100px;
+background:white;
+position:absolute;
+bottom:0;
+left:50%;
+transform-origin:bottom;
+
+}
+
+/* FEATURES */
+
+.features{
+
+padding:100px 10%;
+text-align:center;
+
+}
+
+.features h2{
+font-size:40px;
+margin-bottom:40px;
+}
+
+.grid{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+
+}
+
+.feature{
+
+background:rgba(255,255,255,0.1);
+padding:30px;
+border-radius:15px;
+
+}
+
+/* TIPS */
+
+.tips{
+
+padding:100px 10%;
+text-align:center;
+
+}
+
+.tip-box{
+
+margin-top:30px;
+background:rgba(255,255,255,0.1);
+padding:25px;
+border-radius:15px;
+font-size:18px;
+
+}
+
+/* FOOTER */
+
+footer{
+
+margin-top:60px;
+padding:30px;
+text-align:center;
+background:rgba(0,0,0,0.2);
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+<h2>HealthMetric</h2>
+
+<div>
+<a href="#">Home</a>
+<a href="#calc">Calculator</a>
+<a href="#features">Features</a>
+<a href="#tips">Health Tips</a>
+</div>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<h1>Smart BMI Analyzer</h1>
+
+<p>
+Understand your health with our advanced Body Mass Index calculator,
+interactive gauge meter and personalized health tips.
+</p>
+
+<button onclick="document.getElementById('calc').scrollIntoView()">Check BMI</button>
+
+</section>
+
+<!-- CALCULATOR -->
+
+<section class="calculator" id="calc">
+
+<div class="calc-card">
+
+<h2>BMI Calculator</h2>
+
+<input type="number" id="height" placeholder="Height (cm)">
+<input type="number" id="weight" placeholder="Weight (kg)">
+
+<select id="gender">
+<option>Male</option>
+<option>Female</option>
+</select>
+
+<button class="calculate" onclick="calculateBMI()">Calculate</button>
+
+<div class="gauge">
+
+<div class="needle" id="needle"></div>
+
+</div>
+
+<div class="result" id="result"></div>
+
+</div>
+
+</section>
+
+<!-- FEATURES -->
+
+<section class="features" id="features">
+
+<h2>Platform Features</h2>
+
+<div class="grid">
+
+<div class="feature">
+<h3>⚡ Instant BMI Analysis</h3>
+<p>Calculate your body mass index instantly using our smart algorithm.</p>
+</div>
+
+<div class="feature">
+<h3>📊 Visual Gauge Meter</h3>
+<p>Interactive BMI meter helps visualize your health category.</p>
+</div>
+
+<div class="feature">
+<h3>🧠 Smart Health Tips</h3>
+<p>Get helpful suggestions based on your BMI results.</p>
+</div>
+
+<div class="feature">
+<h3>📱 Mobile Friendly</h3>
+<p>Works perfectly on phones, tablets and desktops.</p>
+</div>
+
+</div>
+
+</section>
+
+<!-- HEALTH TIPS -->
+
+<section class="tips" id="tips">
+
+<h2>Health Suggestions</h2>
+
+<div class="tip-box" id="tipsBox">
+
+Enter your BMI to see health advice.
+
+</div>
+
+</section>
+
+<footer>
+
+<p>© 2026 HealthMetric | Smart BMI Analyzer</p>
+
+</footer>
+
+<script>
+
+function calculateBMI(){
+
+let h=document.getElementById("height").value/100
+let w=document.getElementById("weight").value
+
+let bmi=(w/(h*h)).toFixed(2)
+
+let category=""
+let tip=""
+let angle=0
+
+if(bmi<18.5){
+category="Underweight"
+tip="Increase calorie intake and eat balanced meals."
+angle=20
+}
+else if(bmi<24.9){
+category="Normal"
+tip="Great! Maintain a balanced diet and regular exercise."
+angle=60
+}
+else if(bmi<29.9){
+category="Overweight"
+tip="Try regular exercise and reduce sugar intake."
+angle=110
+}
+else{
+category="Obese"
+tip="Consult a healthcare professional and focus on healthy habits."
+angle=160
+}
+
+document.getElementById("result").innerHTML="BMI: "+bmi+" ("+category+")"
+
+document.getElementById("tipsBox").innerHTML=tip
+
+document.getElementById("needle").style.transform="rotate("+angle+"deg)"
+
+}
+
+</script>
+
+</body>
+</html>
